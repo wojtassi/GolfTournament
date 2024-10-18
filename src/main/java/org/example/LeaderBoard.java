@@ -14,6 +14,7 @@ public class LeaderBoard {
     public LeaderBoard(Tournament tournament) {
         this.tournament = tournament;
     }
+
     public List<List<String>> getLeaderBoard() {
         List<List<String>> leaderBoard = new ArrayList<>();
         List<String> headerHole = new ArrayList<>();
@@ -28,7 +29,7 @@ public class LeaderBoard {
         for (GolferScore golferScore : tournament.getGolfersByScore()) {
             List<String> row = new ArrayList<>();
             row.add(golferScore.getName());
-            row.addAll(golferScore.getScorePerHole().stream().map(s -> s == null ? "": s).map(Object::toString).toList());
+            row.addAll(golferScore.getScorePerHole().stream().map(s -> s == null ? "" : s).map(Object::toString).toList());
             if (golferScore.getHolesCompleted() >= 18)
                 row.add(String.valueOf(golferScore.getScore()));
             leaderBoard.add(row);

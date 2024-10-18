@@ -9,14 +9,11 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Tournament {
-    private String name;
-
     final GolfCourse golfCourse;
     final ConcurrentHashMap<String, GolferScore> golferScores = new ConcurrentHashMap<>();
-
-    int holesPlayed = 0;
-
     final List<SubParListener> subParListeners = new ArrayList<>();
+    int holesPlayed = 0;
+    private final String name;
 
     public Tournament(String name, List<Integer> holePars) {
         this.name = name;

@@ -19,7 +19,7 @@ public class TournamentControllerTest {
         // Arrange
         TournamentController tournamentController = new TournamentController();
         String tournamentName = "Test Tournament";
-        List<Integer> parsPerHole = List.of(4,5,3,4,5,4,4,3,4,4,4,4,4,5,4,3,5,3);
+        List<Integer> parsPerHole = List.of(4, 5, 3, 4, 5, 4, 4, 3, 4, 4, 4, 4, 4, 5, 4, 3, 5, 3);
         SubParListenerTest subParListerTest = new SubParListenerTest();
 
         // Act
@@ -40,33 +40,33 @@ public class TournamentControllerTest {
         tournamentController.addGolferScoreForHole("player3", 1, 4);
         tournamentController.addGolferScoreForHole("player4", 1, 6);
 
-        expectedResults.add(List.of("player3","0","","","","","","","","","","","","","","","","",""));
-        expectedResults.add(List.of("player1","1","","","","","","","","","","","","","","","","",""));
-        expectedResults.add(List.of("player4","2","","","","","","","","","","","","","","","","",""));
-        expectedResults.add(List.of("player2","3","","","","","","","","","","","","","","","","",""));
+        expectedResults.add(List.of("player3", "0", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+        expectedResults.add(List.of("player1", "1", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+        expectedResults.add(List.of("player4", "2", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+        expectedResults.add(List.of("player2", "3", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
         Assertions.assertEquals(expectedResults, tournamentController.getLeaderBoard());
         tournamentController.addGolferScoreForHole("player1", 2, 5);
         tournamentController.addGolferScoreForHole("player2", 2, 7);
         tournamentController.addGolferScoreForHole("player3", 2, 4);
         tournamentController.addGolferScoreForHole("player4", 2, 6);
-        expectedResults.set(2, new ArrayList<>(List.of("player3","0","-1","","","","","","","","","","","","","","","","")));
-        expectedResults.set(3, new ArrayList<>(List.of("player1","1","0","","","","","","","","","","","","","","","","")));
-        expectedResults.set(4, new ArrayList<>(List.of("player4","2","1","","","","","","","","","","","","","","","","")));
-        expectedResults.set(5, new ArrayList<>(List.of("player2","3","2","","","","","","","","","","","","","","","","")));
+        expectedResults.set(2, new ArrayList<>(List.of("player3", "0", "-1", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")));
+        expectedResults.set(3, new ArrayList<>(List.of("player1", "1", "0", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")));
+        expectedResults.set(4, new ArrayList<>(List.of("player4", "2", "1", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")));
+        expectedResults.set(5, new ArrayList<>(List.of("player2", "3", "2", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")));
         Assertions.assertEquals(expectedResults, tournamentController.getLeaderBoard());
         Assertions.assertEquals("player3\t\t Hole: 2\t\tScore: -1 Scored Sub Par", subParListerTest.getEventsReceived().get(0));
         subParListerTest.reset();
         //Too much work to write out all the holes so instead we will verify them by computing them.
-        expectedResults.set(2, new ArrayList<>(List.of("player1","1","0","","","","","","","","","","","","","","","","")));
-        expectedResults.set(3, new ArrayList<>(List.of("player2","3","2","","","","","","","","","","","","","","","","")));
-        expectedResults.set(4, new ArrayList<>(List.of("player3","0","-1","","","","","","","","","","","","","","","","")));
-        expectedResults.set(5, new ArrayList<>(List.of("player4","2","1","","","","","","","","","","","","","","","","")));
+        expectedResults.set(2, new ArrayList<>(List.of("player1", "1", "0", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")));
+        expectedResults.set(3, new ArrayList<>(List.of("player2", "3", "2", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")));
+        expectedResults.set(4, new ArrayList<>(List.of("player3", "0", "-1", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")));
+        expectedResults.set(5, new ArrayList<>(List.of("player4", "2", "1", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")));
 
         for (int i = 3; i <= 18; i++) {
-            expectedResults.get(2).set(i, String.valueOf(addGolferScoreForHole(tournamentController, parsPerHole.get(i-1), "player1", i)));
-            expectedResults.get(3).set(i, String.valueOf(addGolferScoreForHole(tournamentController, parsPerHole.get(i-1), "player2", i)));
-            expectedResults.get(4).set(i, String.valueOf(addGolferScoreForHole(tournamentController, parsPerHole.get(i-1), "player3", i)));
-            expectedResults.get(5).set(i, String.valueOf(addGolferScoreForHole(tournamentController, parsPerHole.get(i-1), "player4", i)));
+            expectedResults.get(2).set(i, String.valueOf(addGolferScoreForHole(tournamentController, parsPerHole.get(i - 1), "player1", i)));
+            expectedResults.get(3).set(i, String.valueOf(addGolferScoreForHole(tournamentController, parsPerHole.get(i - 1), "player2", i)));
+            expectedResults.get(4).set(i, String.valueOf(addGolferScoreForHole(tournamentController, parsPerHole.get(i - 1), "player3", i)));
+            expectedResults.get(5).set(i, String.valueOf(addGolferScoreForHole(tournamentController, parsPerHole.get(i - 1), "player4", i)));
 
         }
         //Now add final score
@@ -74,8 +74,8 @@ public class TournamentControllerTest {
         expectedResults.get(3).add(Integer.toString(expectedResults.get(3).subList(1, expectedResults.get(3).size()).stream().mapToInt(v -> Integer.parseInt(v)).sum()));
         expectedResults.get(4).add(Integer.toString(expectedResults.get(4).subList(1, expectedResults.get(4).size()).stream().mapToInt(v -> Integer.parseInt(v)).sum()));
         expectedResults.get(5).add(Integer.toString(expectedResults.get(5).subList(1, expectedResults.get(5).size()).stream().mapToInt(v -> Integer.parseInt(v)).sum()));
-        List<List<String>> finalExpectedResult = expectedResults.subList(0,2);
-        expectedResults.subList(2,6).stream().sorted(Comparator.comparingInt(l -> Integer.parseInt(l.get(l.size() - 1)))).forEach(finalExpectedResult::add);
+        List<List<String>> finalExpectedResult = expectedResults.subList(0, 2);
+        expectedResults.subList(2, 6).stream().sorted(Comparator.comparingInt(l -> Integer.parseInt(l.get(l.size() - 1)))).forEach(finalExpectedResult::add);
 
         Assertions.assertEquals(finalExpectedResult, tournamentController.getLeaderBoard());
         //Assert that we have sub par events (birdies)

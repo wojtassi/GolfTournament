@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class GolfCourse {
-    private List<Integer> holePars;
+    private final List<Integer> holePars;
 
     public GolfCourse(List<Integer> holePars) {
         validateCourse(holePars);
